@@ -1,5 +1,5 @@
 from arguments import get_args
-from rl_algo.ppo_agent import ppo_agent
+from rl_base.ppo_agent import ppo_agent
 from network.models import MLP_Net
 from utils.utils import get_env_params
 import gym, os, random
