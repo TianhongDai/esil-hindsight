@@ -162,13 +162,8 @@ class ppo_agent:
             for start in range(0, obs.shape[0], nbatch_train):
                 # get the mini-batchs
                 end = start + nbatch_train
-                mbinds = inds[start:end]
-                mb_obs = obs[mbinds]
-                mb_g = goals[mbinds]
-                mb_g_her = goals_her[mbinds]
-                mb_actions = actions[mbinds]
-                mb_returns = returns[mbinds]
-                mb_returns_her = returns_her[mbinds]
+                mbinds, mb_obs, mb_g, mb_g_her, mb_actions = inds[start:end], obs[mbinds], goals[mbinds], goals_her[mbinds], actions[mbinds]
+                mb_returns, mb_returns_her = returns[mbinds], returns_her[mbinds]
                 masks = (mb_returns_her > mb_returns).astype(np.float32)
                 num_clone_samples = np.sum(masks)
                 # normalize the observation and the goal
@@ -179,22 +174,14 @@ class ppo_agent:
                 mb_inputs = np.concatenate([mb_obs_norm, mb_g_norm], axis=1)
                 mb_inputs_her = np.concatenate([mb_obs_norm, mb_g_her_norm], axis=1)
                 # convert the data into the tensor
-                mb_inputs = torch.tensor(mb_inputs, dtype=torch.float32)
-                mb_inputs_her = torch.tensor(mb_inputs_her, dtype=torch.float32)
-                mb_actions = torch.tensor(mb_actions, dtype=torch.float32)
-                mb_returns = torch.tensor(mb_returns, dtype=torch.float32).unsqueeze(1)
-                mb_returns_her = torch.tensor(mb_returns_her, dtype=torch.float32).unsqueeze(1)
-                masks = torch.tensor(masks, dtype=torch.float32).unsqueeze(1)
+                mb_inputs = torch.tensor(mb_inputs, dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu')
+                mb_inputs_her = torch.tensor(mb_inputs_her, dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu')
+                mb_actions = torch.tensor(mb_actions, dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu')
+                mb_returns = torch.tensor(mb_returns, dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu').unsqueeze(1)
+                mb_returns_her = torch.tensor(mb_returns_her, dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu').unsqueeze(1)
+                masks = torch.tensor(masks, dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu').unsqueeze(1)
                 # normalize adv
-                max_nlogp = torch.tensor(np.ones((mb_obs.shape[0], 1)) * (-self.args.max_nlogp), dtype=torch.float32)
-                if self.args.cuda:
-                    mb_inputs = mb_inputs.cuda()
-                    mb_inputs_her = mb_inputs_her.cuda()
-                    mb_actions = mb_actions.cuda()
-                    mb_returns = mb_returns.cuda()
-                    mb_returns_her = mb_returns_her.cuda()
-                    max_nlogp = max_nlogp.cuda()
-                    masks = masks.cuda()
+                max_nlogp = torch.tensor(np.ones((mb_obs.shape[0], 1)) * (-self.args.max_nlogp), dtype=torch.float32, device='cuda' if self.args.cuda else 'cpu')
                 # start to get values
                 mb_values, pis = self.net(mb_inputs)
                 # start to calculate the value loss...
