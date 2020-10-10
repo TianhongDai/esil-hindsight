@@ -162,7 +162,8 @@ class ppo_agent:
             for start in range(0, obs.shape[0], nbatch_train):
                 # get the mini-batchs
                 end = start + nbatch_train
-                mbinds, mb_obs, mb_g, mb_g_her, mb_actions = inds[start:end], obs[mbinds], goals[mbinds], goals_her[mbinds], actions[mbinds]
+                mbinds = inds[start:end]
+                mb_obs, mb_g, mb_g_her, mb_actions = obs[mbinds], goals[mbinds], goals_her[mbinds], actions[mbinds]
                 mb_returns, mb_returns_her = returns[mbinds], returns_her[mbinds]
                 masks = (mb_returns_her > mb_returns).astype(np.float32)
                 num_clone_samples = np.sum(masks)
