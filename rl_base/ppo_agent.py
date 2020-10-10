@@ -36,7 +36,7 @@ class ppo_agent:
         self.model_path = os.path.join(self.args.save_dir, self.args.env_name)
         if MPI.COMM_WORLD.Get_rank() == 0:
             if not os.path.exists(self.model_path):
-                os.path.makedirs(self.model_path, exist_ok=True)
+                os.makedirs(self.model_path, exist_ok=True)
         # define the global normalizer
         self.o_norm = normalizer(self.env_params['obs'], default_clip_range=self.args.clip_range)
         self.g_norm = normalizer(self.env_params['goal'], default_clip_range=self.args.clip_range)
