@@ -20,7 +20,7 @@ sudo apt-get install openmpi-bin openmpi-doc libopenmpi-dev
 ## Instructions
 - run the **FetchReach-v1**:
 ```bash
-mpirun -np 16 python train.py --env-name='FetchReach-v1' --adaptive-beta --display-interval=1 --total-frames=2500000
+mpirun -np 16 python train.py --env-name='FetchReach-v1' --adaptive-beta --display-interval=1 --total-frames=250000
 
 ```
 - run the **FetchPush-v1**:
