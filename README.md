@@ -38,7 +38,7 @@ mpirun -np 32 python train.py --env-name='FetchPickAndPlace-v1' --adaptive-beta 
 mpirun -np 32 python train.py --env-name='FetchSlide-v1' --adaptive-beta --display-interval=1 --batch-size=40 --ncycles=100 --total-frames=5000000
 
 ```
-- run the demo (e.g. **FetchPickAndPlace**), pretrained models is available from [Google Driver](https://drive.google.com/file/d/1Nyi_HVSAX4TnDiQA3Dk19QjojMUr3s3R/view?usp=sharing):
+- run the demo (e.g. **FetchPickAndPlace**), pretrained models is available from [Google Driver](https://drive.google.com/file/d/1WusnDRu0zfOSiZsiotOE6dzOrfEJNn0R/view?usp=sharing):
 ```bash
 python demo.py --env-name='FetchPickAndPlace-v1' --render
 
