@@ -46,7 +46,7 @@ python demo.py --env-name='FetchPickAndPlace-v1' --render
 ## BibTex
 To cite this code for publications - please use:
 ```
-@article{dai2020esil,
+@article{dai2020episodic,
   title={Episodic Self-Imitation Learning with Hindsight},
   author={Dai, Tianhong and Liu, Hengyan and Bharath, Anil Anthony},
   journal={Electronics},
