@@ -1,3 +1,0 @@
-Thu Oct 22 15:55:50 2020
-ERROR: Expired activation key
-
