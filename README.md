@@ -43,12 +43,15 @@ mpirun -np 32 python train.py --env-name='FetchSlide-v1' --adaptive-beta --displ
 python demo.py --env-name='FetchPickAndPlace-v1' --render
 
 ```
+## Plot Curves
+The scirpt to plot learning curves in the paper is provided in `plot_curves.py`.
+
 ## BibTex
 To cite this code for publications - please use:
 ```
 @article{dai2020episodic,
   title={Episodic Self-Imitation Learning with Hindsight},
-  author={Dai, Tianhong and Liu, Hengyan and Bharath, Anil Anthony},
+  author={Dai, Tianhong and Liu, Hengyan and Anthony Bharath, Anil},
   journal={Electronics},
   volume={9},
   number={10},
@@ -56,5 +59,4 @@ To cite this code for publications - please use:
   year={2020},
   publisher={Multidisciplinary Digital Publishing Institute}
 }
-
 ```
