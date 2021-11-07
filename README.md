@@ -1,5 +1,5 @@
 # Episodic Self-Imitation Learning with Hindsight (ESIL)
-This is the official code of our paper "[Episodic Self-Imitation Learning with Hindsight](https://www.mdpi.com/2079-9292/9/10/1742)".
+This is the official code of our paper "[Episodic Self-Imitation Learning with Hindsight](https://www.mdpi.com/2079-9292/9/10/1742)" [Electronics, *Special Issue on Deep Reinforcement Learning: Methods and Applications* 2020].
 
 FetchPush-v1| FetchPickAndPlace-v1| FetchSlide-v1
 -----------------------|-----------------------|-----------------------|
